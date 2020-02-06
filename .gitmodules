@@ -1,6 +1,6 @@
 [submodule "plugins/tpm"]
 	path = plugins/tpm
-	url = https://ithub.com/tmux-plugins/tpm.git
+	url = https://github.com/tmux-plugins/tpm.git
 [submodule "plugins/tmux-yank"]
 	path = plugins/tmux-yank
     url = https://github.com/tmux-plugins/tmux-yank.git
