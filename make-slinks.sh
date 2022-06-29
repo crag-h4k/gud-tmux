@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
-src=$1/gud-tmux
+
+# src is the path of the tmux directory `gud-tmux` 
+src=$1
 dest=$HOME
 
 ln -s $src $dest/.tmux
