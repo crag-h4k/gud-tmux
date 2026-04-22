@@ -8,6 +8,7 @@ Requires `tmux >= 3.3`, `git`, and `make`.
 
 - [Features](#features)
 - [Install](#install)
+- [Packages](#packages)
 - [Symlink management](#symlink-management)
 - [Adding plugins](#adding-plugins)
 
@@ -36,8 +37,22 @@ Requires `tmux >= 3.3`, `git`, and `make`.
 
 ```sh
 git clone --recursive https://github.com/crag-h4k/gud-tmux.git "$HOME/.tmux"
+make -C "$HOME/.tmux" packages   # optional: brew/apt install
 make -C "$HOME/.tmux" install
 ```
+
+## Packages
+
+```sh
+make packages
+```
+
+Installs:
+
+- macOS (Homebrew): `tmux`, `reattach-to-user-namespace`
+- Debian/Ubuntu (apt): `tmux`, `xclip`
+
+Safe to re-run. See `scripts/install-packages.sh`.
 
 ## Symlink management
 
