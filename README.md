@@ -1,58 +1,65 @@
 # gud-tmux
 
-This is a gud tmux configuration for macOS and Linux
+A gud tmux configuration for macOS and Linux.
 
-Requires `tmux ≥ 3.3` and `git`
+Requires `tmux >= 3.3`, `git`, and `make`.
+
+## Table of Contents
+
+- [Features](#features)
+- [Install](#install)
+- [Symlink management](#symlink-management)
+- [Adding plugins](#adding-plugins)
 
 ## Features
 
-- Pretty Status Bar 
-  - Bar is up on bottom (top bars are for cowards) with:
-  - Session + host on the left so you know where the hell you are
+- Pretty status bar (bottom, because top bars are for cowards):
+  - Session + host on the left so you know where you are
   - Live net speeds (up / down)
-  - CPU + RAM 
+  - CPU + RAM
   - Clock
-- Dynamic scrollback buffer: 
-  - Scales with your RAM — 32k lines per GB, minimum 50k. 
-  - If you’ve got 64GB, congrats, you get 2 million lines of scrollback.
-- Clipboard that actually works
-  - OSC52 first, falls back to wl-copy, xclip, or pbcopy depending on where you are.
-- TPM plugins baked in:
-  - tmux-sensible
-  - tmux-yank 
-  - tmux-cpu
-  - tmux-net-speed
-- Quality of life: 
-  - mouse mode
-  - splits open in the same dir
-   - `|` vertical
-   - `$` horizontal
-  - big history
-  - sensible defaults.
+- Dynamic scrollback buffer:
+  - Scales with RAM: 32k lines per GB, minimum 50k
+  - On a 64 GB box you get 2 million lines
+- Clipboard that actually works:
+  - OSC52 first, falls back to `wl-copy`, `xclip`, or `pbcopy` depending on
+    where you are
+- TPM plugins baked in: `tmux-sensible`, `tmux-yank`, `tmux-cpu`,
+  `tmux-net-speed`
+- Quality of life:
+  - Mouse mode on
+  - Splits open in the same directory (`|` vertical, `$` horizontal)
+  - Big history
+  - Sensible defaults
 
-## Installation
-
-1. Clone repo to `~/.tmux`
-
-`git clone https://github.com/crag-h4k/gud-tmux.git $HOME/.tmux --recursive`
-
-2. Make symlink a for `~/.tmux.conf` 
-
-`ln -s $HOME/.tmux/tmux.conf $HOME/.tmux.conf`
-
-3. Rejoice
-
-### Adding new plugins
-
-1. Add plugins to `tmux.conf`
-2. Start tmux session
+## Install
 
 ```sh
-tmux
+git clone --recursive https://github.com/crag-h4k/gud-tmux.git "$HOME/.tmux"
+make -C "$HOME/.tmux" install
 ```
 
-3. prefix + I (capital i, as in Install) to fetch the plugin.
+## Symlink management
 
 ```sh
-(ctrl+b) + I
+make install     # links tmux.conf to ~/.tmux.conf
+make uninstall   # removes the managed symlink
+make relink      # uninstall + install
+make check       # report status
 ```
+
+`make install` refuses to clobber a real `~/.tmux.conf`: back it up or remove
+it first.
+
+The legacy `make-slinks.sh` is deprecated and kept only for one release so
+existing runbooks still work. Prefer `make install`.
+
+## Adding plugins
+
+1. Add the plugin to `tmux.conf`.
+1. Start a tmux session: `tmux`.
+1. Press `prefix + I` (capital i, as in Install) to fetch it:
+
+   ```text
+   (ctrl+b) + I
+   ```
