@@ -1,5 +1,8 @@
 # gud-tmux
 
+> [!WARNING]
+> This repository is deprecated and no longer maintained. Use [crag-h4k/dotfiles](https://github.com/crag-h4k/dotfiles) instead.
+
 A gud tmux configuration for macOS and Linux.
 
 Requires `tmux >= 3.3`, `git`, and `make`.
